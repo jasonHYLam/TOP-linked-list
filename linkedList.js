@@ -5,9 +5,9 @@ function createLinkedList() {
 
     function append(value) { // possible error here
         const newNode = createNode(value)
-        console.log(newNode)
+        tail().nextNodeLink = newNode;
         list.push(newNode)
-        console.log(list)
+        
     }
 
     function prepend(value) {
@@ -19,13 +19,7 @@ function createLinkedList() {
         return list.length
     }
 
-    function testConsoleLog() {
-        console.log(list)
-    }
-
     function head() {
-        console.log(list)
-        console.log(list.find(Boolean))
         return list.find(Boolean).getValue() // returns the first element
     }
 
@@ -39,8 +33,6 @@ function createLinkedList() {
         size,
         head, 
         tail,
-        testConsoleLog,
-
     }
 }
 
@@ -61,6 +53,4 @@ newLinkedList.append(10);
 console.log(newLinkedList.head())
 newLinkedList.prepend(3);
 console.log(newLinkedList.head())
-
-createLinkedList().testConsoleLog();
 
