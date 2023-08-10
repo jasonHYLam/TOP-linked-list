@@ -4,11 +4,11 @@ function createLinkedList() {
     let list = [];
 
     function append(value) {
-        list.push(value)
+        list.push(createNode(value))
     }
 
     function prepend(value) {
-        list.unshift(value)
+        list.unshift(createNode(value))
     }
 
     function size() {
