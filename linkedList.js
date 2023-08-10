@@ -12,6 +12,7 @@ function createLinkedList() {
 
     function prepend(value) {
         const newNode = createNode(value)
+        newNode.nextNodeLink = head();
         list.unshift(newNode)
     }
 
