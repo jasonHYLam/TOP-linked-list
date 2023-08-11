@@ -18,7 +18,14 @@ function createLinkedList() {
     }
 
     function size() { // returns size of list
-        return list.length // probably shouldn't use list
+        function getSizeRecursively(node) {
+            if (node.getNextNodeLink() === null) {
+                return 1;
+            } else {
+                return getSizeRecursively(node.getNextNodeLink()) + 1;
+            }
+        }
+        return getSizeRecursively(head());
     }
 
     function head() { //tail sorta relies on this
@@ -87,4 +94,5 @@ newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
 console.log(newLinkedList.tail().getValue())
+console.log(newLinkedList.size());
 
