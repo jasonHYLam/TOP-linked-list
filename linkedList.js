@@ -1,37 +1,44 @@
 function createLinkedList() {
     let list = [];
 
-    function append(value) { // possible error here
+    function append(value) { // adds item to the end of the list
         const newNode = createNode(value)
-        if (tail()) tail().setNextNodeLink(newNode);// edge case where adding the first element will not set next node link
-        list.push(newNode)
+        if (!tail()) {
+            list.push(newNode)
+        } else {
+            tail().setNextNodeLink(newNode);// edge case where adding the first element will not set next node link
+        }
     }
 
-    function prepend(value) {
+    function prepend(value) { // adds item to the start of the list
         const newNode = createNode(value)
+
         if (head()) newNode.setNextNodeLink(head());
         list.unshift(newNode)
     }
 
-    function size() {
-        return list.length
+    function size() { // returns size of list
+        return list.length // probably shouldn't use list
     }
 
-    function head() {
-        console.log(list.find(Boolean).getValue()) // returns the first element)
-        return list.find(Boolean) // returns the first element
+    function head() { // returns the first element
+        return list.find(Boolean) // probably shouldn't use list
     }
 
-    function tail() { //unsure if this works
-        return list.slice(-1)[0] // returns the last element
+    function tail() {  // returns the last element // may need to refactor to NOT use indexes
+        // if () {
+        //     return
+        // } else {
+        //     return 
+        // }
+        return list.slice(-1)[0] // probably shouldn't use list
     }
 
     function at(index) { // DON'T USE ARRAY INDEX! list[0] is cheating!!
         if (index === 0) {
-            return head(); // this needs to be bubbled up and returned via a chain
+            return head(); // this needs to be bubbled up via a chain of returns
         } else {
-            const item = at(index - 1) // return at(index - 1) with smaller subset; this needs to create a chain
-            console.log(item)
+            const item = at(index - 1) // use recursion: return at(index - 1)
             return item.getNextNodeLink();
         }
     }
@@ -62,6 +69,10 @@ function createNode(value = null) {
         nextNodeLink = nextNode;
     }
 
+    function pop() {
+
+    }
+
     return {
         getValue,
         getNextNodeLink,
@@ -75,10 +86,6 @@ newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(4);
-console.log(newLinkedList.head())
 newLinkedList.prepend(3);
 console.log(newLinkedList.tail().getValue())
-console.log(newLinkedList.head())
-console.log(newLinkedList.at(2))
-console.log(newLinkedList.size())
 
