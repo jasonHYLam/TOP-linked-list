@@ -1,18 +1,17 @@
-console.log('h')
-
 function createLinkedList() {
     let list = [];
 
     function append(value) { // possible error here
         const newNode = createNode(value)
-        tail().nextNodeLink = newNode;
+        if (tail()) tail().setNextNodeLink(newNode);// tail doesn't exist when appending the first value
         list.push(newNode)
         
     }
 
     function prepend(value) {
         const newNode = createNode(value)
-        newNode.nextNodeLink = head();
+        console.log('s')
+        newNode.setNextNodeLink(head());
         list.unshift(newNode)
     }
 
@@ -45,7 +44,19 @@ function createNode(value = null) {
         return nodeValue;
     }
 
-    return {getValue,}
+    function getNextNodeLink() {
+        return nextNodeLink;
+    }
+
+    function setNextNodeLink(nextNode) {
+        nextNodeLink = nextNode;
+    }
+
+    return {
+        getValue,
+        getNextNodeLink,
+        setNextNodeLink,
+    }
 }
 
 const newLinkedList = createLinkedList();
