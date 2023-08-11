@@ -3,7 +3,7 @@ function createLinkedList() {
 
     function append(value) { // adds item to the end of the list
         const newNode = createNode(value)
-        if (!tail()) {
+        if (list.length === 0) {
             list.push(newNode)
         } else {
             tail().setNextNodeLink(newNode);// edge case where adding the first element will not set next node link
@@ -21,24 +21,29 @@ function createLinkedList() {
         return list.length // probably shouldn't use list
     }
 
-    function head() { // returns the first element
+    function head() { //tail sorta relies on this
         return list.find(Boolean) // probably shouldn't use list
     }
 
-    function tail() {  // returns the last element // may need to refactor to NOT use indexes
-        // if () {
-        //     return
-        // } else {
-        //     return 
-        // }
-        return list.slice(-1)[0] // probably shouldn't use list
+    function tail() { //append relies on this
+        // this relies on head() not being null
+        if (!head()) return null; // does this do anything
+        function getTailRecursively(node) {
+            if (typeof node.getNextNodeLink() === null) {
+                return node;
+            } else {
+                return getTailRecursively(node.getNextNodeLink())
+            }
+        }
+        console.log(head())
+        return getTailRecursively(head());
     }
 
-    function at(index) { // DON'T USE ARRAY INDEX! list[0] is cheating!!
+    function at(index) { 
         if (index === 0) {
-            return head(); // this needs to be bubbled up via a chain of returns
+            return head();
         } else {
-            const item = at(index - 1) // use recursion: return at(index - 1)
+            const item = at(index - 1)
             return item.getNextNodeLink();
         }
     }
