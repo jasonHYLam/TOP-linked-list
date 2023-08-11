@@ -3,15 +3,13 @@ function createLinkedList() {
 
     function append(value) { // possible error here
         const newNode = createNode(value)
-        if (tail()) tail().setNextNodeLink(newNode);// tail doesn't exist when appending the first value
+        if (tail()) tail().setNextNodeLink(newNode);// edge case where adding the first element will not set next node link
         list.push(newNode)
-        
     }
 
     function prepend(value) {
         const newNode = createNode(value)
-        console.log('s')
-        newNode.setNextNodeLink(head());
+        if (head()) newNode.setNextNodeLink(head());
         list.unshift(newNode)
     }
 
@@ -20,11 +18,22 @@ function createLinkedList() {
     }
 
     function head() {
-        return list.find(Boolean).getValue() // returns the first element
+        console.log(list.find(Boolean).getValue()) // returns the first element)
+        return list.find(Boolean) // returns the first element
     }
 
-    function tail() {
+    function tail() { //unsure if this works
         return list.slice(-1)[0] // returns the last element
+    }
+
+    function at(index) { // DON'T USE ARRAY INDEX! list[0] is cheating!!
+        if (index === 0) {
+            return head(); // this needs to be bubbled up and returned via a chain
+        } else {
+            const item = at(index - 1) // return at(index - 1) with smaller subset; this needs to create a chain
+            console.log(item)
+            return item.getNextNodeLink();
+        }
     }
 
     return {
@@ -33,6 +42,7 @@ function createLinkedList() {
         size,
         head, 
         tail,
+        at,
     }
 }
 
@@ -60,9 +70,15 @@ function createNode(value = null) {
 }
 
 const newLinkedList = createLinkedList();
-newLinkedList.append(4); // possible error in append()
 newLinkedList.append(10);
+newLinkedList.append(10);
+newLinkedList.append(10);
+newLinkedList.append(10);
+newLinkedList.append(4);
 console.log(newLinkedList.head())
 newLinkedList.prepend(3);
+console.log(newLinkedList.tail().getValue())
 console.log(newLinkedList.head())
+console.log(newLinkedList.at(2))
+console.log(newLinkedList.size())
 
