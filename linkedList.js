@@ -68,6 +68,36 @@ function createLinkedList() {
         getTailRecursively(head()).setNextNodeLink(null); 
     }
 
+    function contains(value) { // return true if a certain value exists
+        function getNextNodeRecursively(node, value) {
+            if (node === value) {
+                return true
+            } else if (node.getNextNodeLink == null) {
+                return false
+            } else {
+                const recursiveValue = getNextNodeRecursively(node.getNextNodeLink, value) 
+                return recursiveValue;
+            }
+        }
+        getNextNodeRecursively(head(), value)
+    }
+
+    function find() { // return index of node containing a value; null if not found
+
+    }
+
+    function toString() { // print linked list as string
+
+    }
+
+    function insertAt(value, index) { // insert node at certain index
+
+    }
+
+    function removeAt(index) { // remove node at certain index
+
+    }
+
     return {
         append,
         prepend,
@@ -76,6 +106,8 @@ function createLinkedList() {
         tail,
         at,
         pop,
+        contains,
+
     }
 }
 
