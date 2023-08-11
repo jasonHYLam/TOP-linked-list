@@ -12,9 +12,13 @@ function createLinkedList() {
 
     function prepend(value) { // adds item to the start of the list
         const newNode = createNode(value)
-
-        if (head()) newNode.setNextNodeLink(head());
-        list.unshift(newNode)
+        if (list.length === 0) {
+            list.push(newNode)
+        } else {
+            newNode.setNextNodeLink(head())
+            list.shift();
+            list.push(newNode)
+        }
     }
 
     function size() { // returns size of list
@@ -28,7 +32,8 @@ function createLinkedList() {
         return getSizeRecursively(head());
     }
 
-    function head() { //tail sorta relies on this
+    function head() { //many functions rely on this
+        // how do i get reference to head of the list?
         return list.find(Boolean) // probably shouldn't use list
     }
 
@@ -52,6 +57,17 @@ function createLinkedList() {
         }
     }
 
+    function pop() { // 'remove' the last element; that might mean set its value to null
+        function getTailRecursively(node) {
+            if (node.getNextNodeLink().getNextNodeLink() === null) { // this is the second to last node. set its next node to null
+                return node;
+            } else {
+                return getTailRecursively(node.getNextNodeLink())
+            }
+        }
+        getTailRecursively(head()).setNextNodeLink(null); 
+    }
+
     return {
         append,
         prepend,
@@ -59,6 +75,7 @@ function createLinkedList() {
         head, 
         tail,
         at,
+        pop,
     }
 }
 
@@ -69,6 +86,10 @@ function createNode(value = null) {
     function getValue() {
         return nodeValue;
     }
+     
+    function setValue(newValue) {
+        nodeValue = newValue;
+    }
 
     function getNextNodeLink() {
         return nextNodeLink;
@@ -78,14 +99,11 @@ function createNode(value = null) {
         nextNodeLink = nextNode;
     }
 
-    function pop() {
-
-    }
-
     return {
         getValue,
         getNextNodeLink,
         setNextNodeLink,
+        setValue,
     }
 }
 
@@ -93,6 +111,8 @@ const newLinkedList = createLinkedList();
 newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
+console.log(newLinkedList.head().getValue())
 console.log(newLinkedList.tail().getValue())
-console.log(newLinkedList.size());
+newLinkedList.pop();
+console.log(newLinkedList.tail().getValue())
 
