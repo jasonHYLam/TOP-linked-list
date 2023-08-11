@@ -26,16 +26,13 @@ function createLinkedList() {
     }
 
     function tail() { //append relies on this
-        // this relies on head() not being null
-        if (!head()) return null; // does this do anything
         function getTailRecursively(node) {
-            if (typeof node.getNextNodeLink() === null) {
+            if (node.getNextNodeLink() === null) {
                 return node;
             } else {
                 return getTailRecursively(node.getNextNodeLink())
             }
         }
-        console.log(head())
         return getTailRecursively(head());
     }
 
@@ -86,9 +83,6 @@ function createNode(value = null) {
 }
 
 const newLinkedList = createLinkedList();
-newLinkedList.append(10);
-newLinkedList.append(10);
-newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
