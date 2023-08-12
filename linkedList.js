@@ -70,16 +70,17 @@ function createLinkedList() {
 
     function contains(value) { // return true if a certain value exists
         function getNextNodeRecursively(node, value) {
-            if (node === value) {
+            // console.log(node.getValue())
+            if (node.getValue() === value) {
                 return true
-            } else if (node.getNextNodeLink == null) {
+            } else if (node.getNextNodeLink() == null) {
                 return false
             } else {
-                const recursiveValue = getNextNodeRecursively(node.getNextNodeLink, value) 
+                const recursiveValue = getNextNodeRecursively(node.getNextNodeLink(), value) 
                 return recursiveValue;
             }
         }
-        getNextNodeRecursively(head(), value)
+        return getNextNodeRecursively(head(), value)
     }
 
     function find() { // return index of node containing a value; null if not found
@@ -141,10 +142,12 @@ function createNode(value = null) {
 
 const newLinkedList = createLinkedList();
 newLinkedList.append(10);
+newLinkedList.append(10);
+newLinkedList.append(10);
+newLinkedList.append(10);
+newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
-console.log(newLinkedList.head().getValue())
-console.log(newLinkedList.tail().getValue())
-newLinkedList.pop();
-console.log(newLinkedList.tail().getValue())
+console.log(newLinkedList.contains(5))
+console.log(newLinkedList.contains(4))
 
