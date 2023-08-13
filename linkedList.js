@@ -100,7 +100,7 @@ function createLinkedList() {
     function toString() { // print linked list as string
         function toStringRecursively(node) { // seems this would do things backwards
             if (node.getNextNodeLink() === null) {
-                return `(${node.getValue().toString()})`;
+                return `(${node.getValue().toString()})`; // i guess this would be unintelligible unless i worked on it before
 
             } else {
                 let recursiveValue = toStringRecursively(node.getNextNodeLink());
