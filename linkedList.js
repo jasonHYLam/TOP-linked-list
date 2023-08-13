@@ -99,21 +99,36 @@ function createLinkedList() {
 
     function toString() { // print linked list as string
         function toStringRecursively(node) { // seems this would do things backwards
-            if (node.getNextNodeLink() === null) {
-                return `(${node.getValue().toString()})`; // i guess this would be unintelligible unless i worked on it before
+        //     if (node.getNextNodeLink() === null) {
+        //         return `(${node.getValue().toString()})`; // i guess this would be unintelligible unless i worked on it before
 
-            } else {
-                let recursiveValue = toStringRecursively(node.getNextNodeLink());
-                recursiveValue += ` -> (${node.getValue().toString()})`
-                return recursiveValue;
-            }
+        //     } else {
+        //         let recursiveValue = toStringRecursively(node.getNextNodeLink());
+        //         recursiveValue += ` -> (${node.getValue().toString()})`
+        //         return recursiveValue;
+        //     }
             
-        }
-        console.log(toStringRecursively(head()));
+        // }
+        // console.log(toStringRecursively(head()));
 
+        if (node.getNextNodeLink() === null) {
+            console.log(node.getValue())
+            console.log(null)
+        } else {
+            console.log(node.getValue())
+            return toStringRecursively(node.getNextNodeLink());
+        }
+    }
+        toStringRecursively(head());
     }
 
     function insertAt(value, index) { // insert node at certain index
+        function insertAtRecursively
+        if (value === ) {
+
+        } else {
+
+        }
 
     }
 
@@ -172,5 +187,5 @@ newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
-
+// newLinkedList.toString()
 newLinkedList.toString();
