@@ -70,7 +70,6 @@ function createLinkedList() {
 
     function contains(value) { // return true if a certain value exists
         function getNextNodeRecursively(node, value) {
-            // console.log(node.getValue())
             if (node.getValue() === value) {
                 return true
             } else if (node.getNextNodeLink() == null) {
@@ -83,11 +82,34 @@ function createLinkedList() {
         return getNextNodeRecursively(head(), value)
     }
 
-    function find() { // return index of node containing a value; null if not found
-
+    function find(value) { // return index of node containing a value; null if not found
+        function findIndexRecursively(node, value) {
+            if (node.getValue() === value) {
+                return 0;
+            } else if (node.getNextNodeLink() === null) { // this will return null plus the counters
+                return null;
+            } else {
+                const recursiveValue = findIndexRecursively(node.getNextNodeLink(), value);
+                if (recursiveValue === null) return null;
+                return recursiveValue + 1;
+            }
+        }
+        return findIndexRecursively(head(), value)
     }
 
     function toString() { // print linked list as string
+        function toStringRecursively(node) { // seems this would do things backwards
+            if (node.getNextNodeLink() === null) {
+                return `(${node.getValue().toString()})`;
+
+            } else {
+                let recursiveValue = toStringRecursively(node.getNextNodeLink());
+                recursiveValue += ` -> (${node.getValue().toString()})`
+                return recursiveValue;
+            }
+            
+        }
+        console.log(toStringRecursively(head()));
 
     }
 
@@ -108,6 +130,8 @@ function createLinkedList() {
         at,
         pop,
         contains,
+        find,
+        toString,
 
     }
 }
@@ -148,6 +172,5 @@ newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
-console.log(newLinkedList.contains(5))
-console.log(newLinkedList.contains(4))
 
+newLinkedList.toString();
