@@ -124,7 +124,11 @@ function createLinkedList() {
 
     function insertAt(value, index) { // insert node at certain index
         function insertAtRecursively(node, value, index) {
-            if (index === 1) { // index corresponding to node behind the created node
+            // how can i insert at index = 0?
+            if (index === 0) {
+                prepend(value)
+            }
+            else if (index === 1) { // index corresponding to node behind the created node
                 const newNode = createNode(value)
                 // and will have to change the new node's next node value
                 newNode.setNextNodeLink(node.getNextNodeLink())
@@ -139,12 +143,20 @@ function createLinkedList() {
             value,
             index,
             )
-
-
     }
 
     function removeAt(index) { // remove node at certain index
-
+        function recursiveFunction(node, index) {
+            if (index === 1) {
+                console.log(node.getValue())
+                console.log(node.getNextNodeLink())
+                node.setNextNodeLink(node.getNextNodeLink().getNextNodeLink()) // set the previous node's next node to be the 2nd following node
+                console.log(node.getNextNodeLink())
+            } else {
+                return (node.getNextNodeLink(), index - 1)
+            }
+        }
+        recursiveFunction(head(), index)
     }
 
     return {
@@ -159,7 +171,7 @@ function createLinkedList() {
         find,
         toString,
         insertAt,
-
+        removeAt,
     }
 }
 
@@ -199,7 +211,9 @@ newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
-// newLinkedList.toString()
+newLinkedList.insertAt(17,0)
 newLinkedList.toString();
-newLinkedList.insertAt(17,3)
+newLinkedList.removeAt(3)
 newLinkedList.toString();
+
+console.log('h')
