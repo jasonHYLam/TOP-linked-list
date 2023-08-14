@@ -98,28 +98,15 @@ function createLinkedList() {
     }
 
     function toString() { // print linked list as string
-        function toStringRecursively(node) { // seems this would do things backwards
-        //     if (node.getNextNodeLink() === null) {
-        //         return `(${node.getValue().toString()})`; // i guess this would be unintelligible unless i worked on it before
 
-        //     } else {
-        //         let recursiveValue = toStringRecursively(node.getNextNodeLink());
-        //         recursiveValue += ` -> (${node.getValue().toString()})`
-        //         return recursiveValue;
-        //     }
-            
-        // }
-        // console.log(toStringRecursively(head()));
-
-        if (node.getNextNodeLink() === null) {
-            console.log(node.getValue())
-            console.log(null)
-        } else {
-            console.log(node.getValue())
-            return toStringRecursively(node.getNextNodeLink());
-        }
-    }
-        toStringRecursively(head());
+            let node = head();
+            let linkedListString = '';
+            for (let i = 0; i < size(); i++) {
+                linkedListString += `(${node.getValue().toString()}) =>`
+                node = node.getNextNodeLink();
+            }
+            linkedListString += ' null'
+            console.log(linkedListString)
     }
 
     function insertAt(value, index) { // insert node at certain index
@@ -154,7 +141,7 @@ function createLinkedList() {
                 console.log('index exceeds linked list size')
                 return;
             }
-            else if (index === 0) {
+            else if (index === 0) { // remove the first node
                 list.shift();
                 list.push(node.getNextNodeLink())
             }
@@ -224,4 +211,5 @@ newLinkedList.toString();
 newLinkedList.removeAt(0)
 newLinkedList.toString();
 
-console.log('h')
+console.log(newLinkedList.size())
+newLinkedList.insertAt(8,5)
