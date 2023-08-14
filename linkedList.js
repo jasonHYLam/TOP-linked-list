@@ -124,8 +124,11 @@ function createLinkedList() {
 
     function insertAt(value, index) { // insert node at certain index
         function insertAtRecursively(node, value, index) {
-            // how can i insert at index = 0?
-            if (index === 0) {
+            if (index >= size()) {
+                console.log('index exceeds linked list size')
+                return;
+            }
+            else if (index === 0) {
                 prepend(value)
             }
             else if (index === 1) { // index corresponding to node behind the created node
@@ -147,7 +150,11 @@ function createLinkedList() {
 
     function removeAt(index) { // remove node at certain index
         function recursiveFunction(node, index) {
-            if (index === 0) {
+            if (index >= size()) {
+                console.log('index exceeds linked list size')
+                return;
+            }
+            else if (index === 0) {
                 list.shift();
                 list.push(node.getNextNodeLink())
             }
@@ -212,7 +219,7 @@ newLinkedList.append(10);
 newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
-newLinkedList.insertAt(17,0)
+newLinkedList.insertAt(17,10)
 newLinkedList.toString();
 newLinkedList.removeAt(0)
 newLinkedList.toString();
