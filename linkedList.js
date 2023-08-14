@@ -147,7 +147,11 @@ function createLinkedList() {
 
     function removeAt(index) { // remove node at certain index
         function recursiveFunction(node, index) {
-            if (index === 1) {
+            if (index === 0) {
+                list.shift();
+                list.push(node.getNextNodeLink())
+            }
+            else if (index === 1) {
                 node.setNextNodeLink(node.getNextNodeLink().getNextNodeLink()) // set the previous node's next node to be the 2nd following node
             } else {
                 return recursiveFunction(node.getNextNodeLink(), index - 1)
@@ -210,7 +214,7 @@ newLinkedList.append(4);
 newLinkedList.prepend(3);
 newLinkedList.insertAt(17,0)
 newLinkedList.toString();
-newLinkedList.removeAt(3)
+newLinkedList.removeAt(0)
 newLinkedList.toString();
 
 console.log('h')
