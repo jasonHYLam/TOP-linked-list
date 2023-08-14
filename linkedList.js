@@ -123,12 +123,23 @@ function createLinkedList() {
     }
 
     function insertAt(value, index) { // insert node at certain index
-        function insertAtRecursively
-        if (value === ) {
-
-        } else {
-
+        function insertAtRecursively(node, value, index) {
+            if (index === 1) { // index corresponding to node behind the created node
+                const newNode = createNode(value)
+                // and will have to change the new node's next node value
+                newNode.setNextNodeLink(node.getNextNodeLink())
+                // will have to change the previous value's next node
+                node.setNextNodeLink(newNode)
+            } else {
+                return insertAtRecursively(node.getNextNodeLink(), value, index -1)
+            }
         }
+        insertAtRecursively(
+            head(),
+            value,
+            index,
+            )
+
 
     }
 
@@ -147,6 +158,7 @@ function createLinkedList() {
         contains,
         find,
         toString,
+        insertAt,
 
     }
 }
@@ -188,4 +200,6 @@ newLinkedList.append(10);
 newLinkedList.append(4);
 newLinkedList.prepend(3);
 // newLinkedList.toString()
+newLinkedList.toString();
+newLinkedList.insertAt(17,3)
 newLinkedList.toString();
