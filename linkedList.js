@@ -148,12 +148,9 @@ function createLinkedList() {
     function removeAt(index) { // remove node at certain index
         function recursiveFunction(node, index) {
             if (index === 1) {
-                console.log(node.getValue())
-                console.log(node.getNextNodeLink())
                 node.setNextNodeLink(node.getNextNodeLink().getNextNodeLink()) // set the previous node's next node to be the 2nd following node
-                console.log(node.getNextNodeLink())
             } else {
-                return (node.getNextNodeLink(), index - 1)
+                return recursiveFunction(node.getNextNodeLink(), index - 1)
             }
         }
         recursiveFunction(head(), index)
